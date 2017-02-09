@@ -9,10 +9,29 @@
 body {
   font-family: fantasy;
   font-size: 24px;
-  color: #7FFFD4;
+  color: black;
   line-height: 34px;
-  background: url("../images/footer_lodyas.png");
+  background: url("../images/mainBackground.png");
 }
+#mainHead {
+	height: 60px;
+}
+#mainBanner {
+	font-size: 60px;
+	margin-right: 200px;
+
+}
+.attackBtn {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.topMargin {
+	margin-top: 20px;
+	font-size: 30px;
+	color: white;
+}
+
+
 
 
 

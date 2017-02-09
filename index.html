@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <!--Linking viewport, regular zoom 100% across various devices.-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Star Wars | RPG </title>
+  <!--Linking bootstrap css to leverage classes for RWD-->
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+  <!--Link after boostrap so that it does not overwrite my styles.-->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <!-- Added link to the jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <!--Linking javascript-->
+  <script type="text/javascript" src="assets/javascript/game.js"></script>
+  
+</head>
+<!--need to onload the entire page before performing any JS, i.e. wait for page to fully load.-->
+<body>
+  <div id="mainHead"> 
+    <div class="pull-right topMargin" id="mainBanner">Star Wars
+    </div>
+  </div>
+  <div class="topMargin" id="chosenChar">Available Characters for Selection </div>
+    <div id="availableChoices">
+      <button class="btn btn-success character" id="obi" value="obi"> 
+        <div>Obi-Wan Kenobi </div>
+        <img src="assets/images/obiWan.png" alt="obi" width="100" height="100">
+        <div class="hp"> 180 </div> 
+      </button>
+      <button class="btn btn-success character" id="luke" value="luke"> 
+        <div>Luke Skywalker </div>
+        <img src="assets/images/luke.png" alt="luke" width="100" height="100">
+        <div class="hp"> 220 </div> 
+      </button>
+      <button class="btn btn-success character" id="vader" value="vader"> 
+        <div>Darth Vader </div>
+        <img src="assets/images/vader.png" alt="vader" width="100" height="100">
+        <div class="hp"> 280 </div> 
+      </button>
+      <button class="btn btn-success character" id="sidious" value="sidious"> 
+        <div>Darth Sidious </div>
+        <img src="assets/images/sidious.png" alt="sidious" width="100" height="100">
+        <div class="hp"> 300 </div> 
+      </button>
+    </div>
+  <div class="topMargin">Enemies Available To Attack</div>
+  <div id="enemyAvailable"></div>
+  <button class="btn btn-warning attackBtn" value="attack"> 
+    <div> Attack </div>
+  </button>
+  <div class="topMargin">Defender </div>
+  <div id="enemy"></div>
+  <div class="container-fluid topMargin">
+    <p id="wonLog">You've Won!!! GAME OVER!!!</p>
+    <p id="gameOverLog">You've been defeated... GAME OVER!!!</p>
+    <p id="defeatedJedi">You've defeated <span id="defeated-enemy-name"></span>.<span> Please choose to fight another enemey.</span> </p> 
+    <p id="firstLog">You attacked <span id="your-name"></span> for <span id="your-attack"></span> damages.</p> 
+    <p id="secondLog"><span id="enemy-name"></span> attacked you back for <span id="enemy-attack"></span> damages.</p> 
+    <button class="btn btn-info restartBtn" id="restartPrompt"> 
+    <div> Restart </div>
+    </button>  
+  </div>
+  </div>
+</body>
+</html>
