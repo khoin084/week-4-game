@@ -1,10 +1,16 @@
+/*
+*Developer:Khoi Nguyen
+*Date: 2/9/2017
+*UCSD Code Bootcamp: Homework #4
+*/
+
 /*Might be violation to use thise global variables (bad practice), 
 but way too tired, so i'm gonna use it.
 Globals used to track number of defeated enemies.*/
 var enemiesTakenDown = 0;
 
 /*************************************
-* STAR WARDS OBJECT
+* STAR WARDS OBJECT					 *
 **************************************/ 
 var swGame = {
     yourCharacter: null,
@@ -42,6 +48,7 @@ var swGame = {
     }],
   
     yourCharacterSelection: function(strName) {
+      //cycles through the jedi properties array and sets your characters to true if matches.
       for(var i = 0; i < this.jedi.length; i++) {
         if(this.jedi[i].name === strName) {
           this.yourCharacter = this.jedi[i];
@@ -49,13 +56,16 @@ var swGame = {
         }
       }
       swGame.selectedCharacter = true;
+      //update 'yourCharacter' on html display
       $("#chosenChar").html("<span class='blue'><b>Your Character</b></span>");
     },//end of yourCharacterSelection method
     yourDefenderCharacterSelection: function(strName) {
       	for(var i = 0; i < swGame.jedi.length; i++) {
+        	//only set defender character if it has not been set to true.
         	if(strName === this.jedi[i].name && this.selectedDefenderCharacter === false) {
           		this.defenderCharacter = this.jedi[i];
           		this.defenderCharacter.status = true;
+          		//moves selected enemy to Defender area of html
           		var tempStr = "#" + this.jedi[i].name;
           		var tempObj = $(tempStr).detach();
           		tempObj.appendTo($("#enemy"));
@@ -65,8 +75,9 @@ var swGame = {
       	}
     },//end of yourDefenerCharacterSelection method
     displayAttackLog: function (hero, enemy) {
-    	
+    	//only start displaying messages if both your character and defender character has been selected.
     	if(this.selectedCharacter && this.selectedDefenderCharacter) { 
+       		//healthpoint deductions and display accordingly.
        		this.yourCharacter.healthPoints -= this.defenderCharacter.counterAttackPower;
        		this.defenderCharacter.healthPoints -= this.yourCharacter.attackPower;
        		$("#your-attack").html(this.yourCharacter.attackPower);
@@ -79,13 +90,14 @@ var swGame = {
        		$("#firstLog").show();
     		$("#secondLog").show();
     		this.yourCharacter.attackPower += this.yourCharacter.attackPower;
+     		//coniditoinal to check for lose.
      		if(this.yourCharacter.healthPoints < 0) {
      			$("#firstLog").hide();
   				$("#secondLog").hide();
   				$("#gameOverLog").show();
   				$("#restartPrompt").show();
   				this.resetGame();
-     		}
+     		}//hide defeated enemies.
        		else if(this.defenderCharacter.healthPoints < 0) {
          		$(enemy).hide();
          		$("#defeatedJedi").show();
@@ -100,7 +112,7 @@ var swGame = {
        	else {
        		alert("Please select your characters before attacking.");
      	}     	
-     	console.log("*******" + enemiesTakenDown);
+     	//victory condition! if beaten all three enemies.
      	if(enemiesTakenDown === 3) {
      		$("#defeatedJedi").hide();
      		$("#gameOverLog").hide();
@@ -131,6 +143,7 @@ var swGame = {
       	this.defenderCharacter = null;
         enemiesTakenDown = 0;
         $("#chosenChar").html("<span>Available Characters for Selection</span>");
+      	//for loop to reorganize buttons on the display for another round.
       	for(var i = 0; i < this.jedi.length; i++) {
         	var tempReset = "#" + this.jedi[i].name;
            	$(tempReset).find(".hp").html(this.jedi[i].healthPoints);
@@ -185,6 +198,7 @@ $( document ).ready(function() {
   	else {
   		var str1 = "#" + swGame.yourCharacter.name;
     	var str2 = "#" + swGame.defenderCharacter.name;
+    	//passing character names into display method after attacking.
     	swGame.displayAttackLog(str1, str2); 
     } 
   });//end of attack button listener
